@@ -1,0 +1,22 @@
+<div class="main-div" *ngIf="data">
+  <div *ngFor="let question of data; index as ind">
+    <h1>{{question.name}}</h1>
+    <div *ngFor="let choice of question.choices; index as i" class="form-check">
+        <input type="radio" [name]="ind" [id]="ind + i" class="form-check-input float-none" [value]="i" (click)="arr[ind] = i"/>
+        <label [for]="ind + i" class="margin">{{choice}}</label>
+    </div>
+    <ngb-alert type="success" *ngIf="submit && (boolarr[ind])">
+      You are correct.
+    </ngb-alert>
+    <ngb-alert type="danger" *ngIf="submit && !boolarr[ind]">
+      You are incorrect. The correct answer is {{question.choices[question.correct - 1]}}.
+    </ngb-alert>
+  </div>
+  <button class="btn btn-primary" (click)="click()" [disabled]="submit">Submit</button>
+  <div *ngIf="submit">
+    <h1>{{getScore()}}/{{data.length}}</h1>
+  </div>
+</div>
+<div *ngIf="data === null" class="text-center">
+  Not found
+</div>

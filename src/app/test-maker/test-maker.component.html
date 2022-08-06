@@ -1,0 +1,29 @@
+<div>
+  <button class="btn btn-primary" (click)="test.push({name: '', choices: '', correct: 0}); testDupli.push({name: '', choices: [''], correct: 0})">New Question</button>
+  <br>
+  <hr>
+  <br>
+  <div *ngFor="let question of test; index as i">
+    <div>
+      <label [for]="i+ 'name'" class="m-2">Question name: </label>
+      <input [(ngModel)]="question.name" [value]="question.name" type="text" [id]="i+ 'name'"/>
+    </div>
+    <br>
+    <div>
+      <label [for]="i+ 'choices'" class="m-2">Answer Choices: </label>
+      <input [(ngModel)]="question.choices" [value]="question.choices" type="text" [id]="i+ 'choices'"/>
+    </div>
+    <div>
+      <label [for]="i+ 'correct'" class="m-2">Correct: </label>
+      <input [(ngModel)]="question.correct" [value]="question.correct" type="number" [id]="i+ 'correct'"/>
+    </div>
+    <br>
+    <button class="btn btn-dark" (click)="test.splice(i, 1)">Delete Question</button>
+    <br>
+    <hr>
+    <br>
+  </div>
+  <button (click)="submit()">Submit</button>
+  <br>
+  <a [routerLink]="id" *ngIf="id">Go to test</a>
+</div>
